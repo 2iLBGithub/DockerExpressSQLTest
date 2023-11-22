@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  express-component:
+    build: ./sql_express
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: desdt123
+      MYSQL_DATABASE: docker_express_sql_database_test
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d
